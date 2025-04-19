@@ -1,24 +1,45 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Peregrino - A Jornada</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Tabuada Interativa de Pitágoras</title>
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-    <div id="game">
-        <h1 id="titulo"></h1>
-        <p id="texto"></p>
-        <img id="imagem" src="" alt="imagem da fase"/>
-        <img id="imagemTransicao" src="" alt="Imagem de Transição"/>
-        <div id="escolhas"></div>
+    <!--Botão Tutorial-->
+    <div class="top-right">
+        <button onclick="startTutorial()">Tutorial</button>
     </div>
 
-    <footer>
-        Criado por Diego Nascimento - <a href="">GitHub</a> | <a href="">LinkedIn</a>
-    </footer>
+    <!--Imagem acima do h1-->
+    <img src="" alt="Imagem Explicativa" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;">
 
-    <script src="script.js"></script>
+    <h1>Tabuada Interativa de Pitágoras</h1>
+
+    <!--Seletor de operação-->
+    <div class="controls">
+        <label for="operation">Operação:</label>
+        <select id="operation" onchange="changeOperation()">
+            <option value="multiplicacao">Multiplicação</option>
+            <option value="adicao">Adição</option>
+            <option value="subtracao">Subtração</option>
+            <option value="divisao">Divisão</option>
+        </select>
+    </div>
+
+    <!--Histórico-->
+    <div id="history-container">
+        <h2>Histórico</h2>
+        <ul id="history"></ul>
+    </div>
+
+    <!--Tutorial Pop-up-->
+    <div id="tutorial-popup"  class="hidden">
+        <p id="tutorial-text"></p>
+        <button>Próximo</button>
+
+    </div>
+
 </body>
 </html>
