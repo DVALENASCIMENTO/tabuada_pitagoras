@@ -1,0 +1,240 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    color: #333;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+    position: relative;
+  }
+  
+  /* Temas por operação */
+  body.multiplicacao {
+    background-color: #fff8e1;
+  }
+  body.adicao {
+    background-color: #e1f5fe;
+  }
+  body.subtracao {
+    background-color: #fce4ec;
+  }
+  body.divisao {
+    background-color: #ede7f6;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  
+  /* Botão Tutorial no canto superior direito */
+  .top-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+  }
+  
+  .top-right button {
+    background-color: #00bcd4;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .top-right button:hover {
+    background-color: #0097a7;
+  }
+  
+  /* Container de seleção */
+  .controls {
+    margin-top: 60px; /* espaço para o botão no topo */
+    margin-bottom: 20px;
+  }
+  
+  /* Container da tabuada */
+  #table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: auto;
+    max-width: 600px;
+  }
+  
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  th {
+    background-color: #eee;
+  }
+  
+  /* Estilos para seleção */
+  .selected-row {
+    background-color: #81c784 !important;
+    color: white;
+  }
+  
+  .selected-col {
+    background-color: #4fc3f7 !important;
+    color: white;
+  }
+  
+  .selected-cell {
+    background-color: #ffb74d !important;
+    color: white;
+  }
+  
+  /* Destaque do resultado */
+  .highlighted {
+    background-color: #ba68c8 !important;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Botões de limpar */
+  .clear-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Botões gerais */
+  button {
+    padding: 10px 20px;
+    background-color: #3949ab;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #283593;
+  }
+  
+  select {
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  /* Histórico */
+  #history-container {
+    margin-top: 30px;
+  }
+  
+  #history-container h2 {
+    margin-bottom: 10px;
+  }
+  
+  #history {
+    list-style: none;
+    padding-left: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 10px;
+  }
+  
+  #history li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #ddd;
+  }
+  
+  /* Tutorial Pop-up */
+  #tutorial-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #424242;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  #tutorial-popup.hidden {
+    display: none;
+  }
+  
+  #tutorial-text {
+    font-size: 16px;
+    flex: 1;
+  }
+  
+  #tutorial-popup button {
+    background-color: #ff7043;
+  }
+  
+  #tutorial-popup button:hover {
+    background-color: #f4511e;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 600px) {
+    table {
+      font-size: 14px;
+    }
+  
+    th, td {
+      padding: 10px;
+    }
+  
+    #tutorial-popup {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+    }
+  
+    .clear-buttons {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  
+    .top-right {
+      position: static;
+      text-align: right;
+      margin-bottom: 10px;
+    }
+  }
+  
+  
