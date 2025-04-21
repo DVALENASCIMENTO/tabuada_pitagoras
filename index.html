@@ -1,46 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabuada Interativa de Pitágoras</title>
-    <link rel="stylesheet" href="css/style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tabuada Interativa de Pitágoras</title>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body>
-    <!--Botão Tutorial-->
-    <div class="top-right">
-        <button onclick="startTutorial()">Tutorial</button>
-    </div>
+<body class="black-theme">
+  <!--Botão Tutorial-->
+  <div class="top-right">
+    <button onclick="startTutorial()">Tutorial</button>
+  </div>
 
-    <!--Imagem acima do h1-->
-    <img src="" alt="Imagem Explicativa" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;">
+  <!--Imagem acima do h1-->
+  <img class="pitagoras-img" src="img/pitágorasbgout.png" alt="Imagem Explicativa">
 
-    <h1>Tabuada Interativa de Pitágoras</h1>
+  <h1>Tabuada Interativa de Pitágoras</h1>
 
-    <!--Seletor de operação-->
-    <div class="controls">
-        <label for="operation">Operação:</label>
-        <select id="operation" onchange="changeOperation()">
-            <option value="multiplicacao">Multiplicação</option>
-            <option value="adicao">Adição</option>
-            <option value="subtracao">Subtração</option>
-            <option value="divisao">Divisão</option>
-        </select>
-    </div>
+  <!--Seletor de operação-->
+  <div class="controls">
+    <label for="operation">Operação:</label>
+    <select id="operation" onchange="changeOperation()">
+      <option value="multiplicacao">Multiplicação</option>
+      <option value="adicao">Adição</option>
+      <option value="subtracao">Subtração</option>
+      <option value="divisao">Divisão</option>
+    </select>
+  </div>
 
-    <!--Histórico-->
-    <div id="history-container">
-        <h2>Histórico</h2>
-        <ul id="history"></ul>
-    </div>
+  <!--Histórico-->
+  <div id="history-container">
+    <h2>Histórico</h2>
+    <ul id="history"></ul>
+  </div>
 
-    <!--Tutorial Pop-up-->
-    <div id="tutorial-popup"  class="hidden">
-        <p id="tutorial-text"></p>
-        <button onclick="nextTutorialStep()">Próximo</button>
-    </div>
+  <!--Tutorial Pop-up-->
+  <div id="tutorial-popup" class="hidden">
+    <p id="tutorial-text"></p>
+    <button onclick="nextTutorialStep()">Próximo</button>
+  </div>
 
-    <script src="js/script.js"></script>
+  <!-- Rodapé -->
+  <footer>
+    <p>Desenvolvido por Diego Nascimento - Tecnólogo em Análise e Desenvolvimento de Sistemas</p>
+    <p>TechVibe Solutions - Desennvolvimento Sistemas</p>
+    <br> 
+      <a href="https://github.com/diegovalenascimento" target="_blank">GitHub</a> | 
+      <a href="https://linkedin.com/in/diegovalenascimento" target="_blank">LinkedIn</a>
+    
+  </footer>
 
+  <script src="js/script.js"></script>
 </body>
 </html>
