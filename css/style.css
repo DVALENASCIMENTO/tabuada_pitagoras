@@ -16,16 +16,16 @@ body {
 
 /* Temas por operação */
 body.multiplicacao {
-  background-color: #fff8e1;
+  background-color: #fde48b;
 }
 body.adicao {
-  background-color: #e1f5fe;
+  background-color: #98ffb9;
 }
 body.subtracao {
-  background-color: #fce4ec;
+  background-color: #fcb8b8;
 }
 body.divisao {
-  background-color: #ede7f6;
+  background-color: #c9a5ff;
 }
 
 /* Imagem principal acima do título */
@@ -48,10 +48,9 @@ body.divisao {
   display: block;
   margin: 0 auto;
   width: 80%;
-  max-width: 400px; /* tamanho máximo */
+  max-width: 200px; /* tamanho máximo */
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -234,6 +233,33 @@ select {
 #tutorial-popup button:hover {
   background-color: #f4511e;
 }
+
+footer {
+  background-color: #1F3A63; /* Azul escuro */
+  color: #FFFFFF;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: 40px;
+  border-top: 4px solid #5CA9E6; /* Azul claro para contraste elegante */
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  color: #C0C0C0; /* Cinza prata */
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
 
 /* Responsividade */
 @media (max-width: 600px) {
