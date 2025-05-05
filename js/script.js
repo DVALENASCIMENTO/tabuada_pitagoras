@@ -1,112 +1,196 @@
-//Variáveis Iniciais
-
-let operation = "multiplicacao"; // Define a operação inicial como multiplicação
-let selected = [];               // Lista para guardar os itens selecionados (linhas, colunas ou células)
-let tutorialSteps = [];          // Lista de etapas do tutorial
-let step = 0;                    // Etapa atual do tutorial
-
-
-//Sons para cada operação
+let operation = "multiplicacao";
+let selected = [];
+let tutorialSteps = [];
+let step = 0;
 
 const sounds = {
-  multiplicacao: new Audio('https://...7035.mp3'), // Som para multiplicação
-  adicao: new Audio('https://...7035.mp3'),        // Som para adição
-  subtracao: new Audio('https://...9ef44.mp3'),    // Som para subtração
-  divisao: new Audio('https://...9ef44.mp3')       // Som para divisão
+  multiplicacao: new Audio('https://cdn.pixabay.com/audio/2022/03/15/audio_a1ccfb7035.mp3'),
+  adicao: new Audio('https://cdn.pixabay.com/audio/2022/03/15/audio_a1ccfb7035.mp3'),
+  subtracao: new Audio('https://cdn.pixabay.com/audio/2022/03/15/audio_5c94f9ef44.mp3'),
+  divisao: new Audio('https://cdn.pixabay.com/audio/2022/03/15/audio_5c94f9ef44.mp3')
 };
 
-
-//Criando a Tabela da Tabuada
-
 function createTable() {
-  const container = document.getElementById("table-container"); // Pega o elemento onde a tabela será inserida
-  let html = "<table><tr><th></th>"; // Começa a montar o HTML da tabela com a primeira linha vazia
+  const container = document.getElementById("table-container");
+  let html = "<table><tr><th></th>";
 
-
-//Cria as Colunas
-
-  for (let c = 1; c <= 10; c++) { // Cria os títulos das colunas (1 a 10)
+  for (let c = 1; c <= 10; c++) {
     html += `<th data-col="${c}">${c}</th>`;
   }
 
-  html += "</tr>"; // Fecha a primeira linha
+  html += "</tr>";
 
-
-//Cria as Colunas
-
-  for (let r = 1; r <= 10; r++) { // Para cada linha (1 a 10)
-    html += `<tr><th data-row="${r}">${r}</th>`; // Cria o título da linha
+  for (let r = 1; r <= 10; r++) {
+    html += `<tr><th data-row="${r}">${r}</th>`;
     for (let c = 1; c <= 10; c++) {
-      // Define o valor da célula conforme a operação
       const value = (operation === "adicao") ? r + c : r * c;
-      html += `<td data-cell="${r}-${c}" data-value="${value}">${value}</td>`; // Adiciona a célula com valor
+      html += `<td data-cell="${r}-${c}" data-value="${value}">${value}</td>`;
     }
-    html += "</tr>"; // Fecha a linha
+    html += "</tr>";
   }
 
-  html += "</table>"; // Fecha a tabela
-  container.innerHTML = html; // Insere a tabela no HTML
-  setListeners(); // Ativa os eventos de clique
+  html += "</table>";
+  container.innerHTML = html;
+  setListeners();
 }
-
-
-//Adicionando Eventos de Clique
 
 function setListeners() {
   document.querySelectorAll("th[data-row], th[data-col]").forEach(el =>
-    el.addEventListener("click", handleEdgeClick) // Clique nas bordas (linha/coluna)
+    el.addEventListener("click", handleEdgeClick)
   );
   document.querySelectorAll("td[data-cell]").forEach(el =>
-    el.addEventListener("click", handleCellClick) // Clique nas células internas
+    el.addEventListener("click", handleCellClick)
   );
 }
 
-
-
-//Lógica ao clicar em linha ou coluna
-
 function handleEdgeClick(e) {
-  const el = e.target;                    // Elemento clicado
-  const value = parseInt(el.innerText);   // Número clicado
-  const isRow = el.hasAttribute("data-row"); // Verifica se é linha
+  const el = e.target;
+  const value = parseInt(el.innerText);
+  const isRow = el.hasAttribute("data-row");
 
-  clearHighlights(); // Limpa destaques anteriores
+  clearHighlights();
 
   if (operation === "multiplicacao" || operation === "adicao") {
-    // Se for multiplicação ou adição
-
+    // Para multiplicação e adição
     if (isRow) {
-      document.querySelector(`th[data-row="${value}"]`).classList.add("selected-row"); // Destaca a linha
+      document.querySelector(`th[data-row="${value}"]`).classList.add("selected-row");
     } else {
-      document.querySelector(`th[data-col="${value}"]`).classList.add("selected-col"); // Destaca a coluna
+      document.querySelector(`th[data-col="${value}"]`).classList.add("selected-col");
     }
 
-    selected.push({ type: isRow ? "row" : "col", value }); // Adiciona à lista de selecionados
+    selected.push({ type: isRow ? "row" : "col", value });
 
     if (selected.length === 2) {
-      // Se já escolheu linha e coluna
-      const row = selected.find(s => s.type === "row")?.value; // Busca a linha
-      const col = selected.find(s => s.type === "col")?.value; // Busca a coluna
+      const row = selected.find(s => s.type === "row")?.value;
+      const col = selected.find(s => s.type === "col")?.value;
       if (row && col) {
-        const result = operate(row, col); // Faz a operação
+        const result = operate(row, col);
         const cell = document.querySelector(`td[data-cell="${row}-${col}"]`);
-        cell.classList.add("highlighted"); // Destaca o resultado
-        addHistory(`${row} ${symbol()} ${col} = ${result}`); // Adiciona ao histórico
-        playSound(); // Toca o som
-        selected = []; // Limpa seleção
+        cell.classList.add("highlighted");
+        addHistory(`${row} ${symbol()} ${col} = ${result}`);
+        playSound();
+        selected = [];
       }
     }
-
   } else {
-    // Se for subtração ou divisão
-    const cellObj = selected.find(s => s.type === "cell"); // Verifica se já selecionou uma célula
+    // Para subtração e divisão
+    const cellObj = selected.find(s => s.type === "cell");
     if (cellObj) {
-      const result = operate(cellObj.value, value); // Executa a operação com o valor clicado
+      const result = operate(cellObj.value, value);
       addHistory(`${cellObj.value} ${symbol()} ${value} = ${result}`);
       playSound();
       selected = [];
-      clearSelection(); // Limpa seleção
+      clearSelection();
     }
   }
 }
 
+function handleCellClick(e) {
+  if (operation === "subtracao" || operation === "divisao") {
+    clearSelection();
+    const el = e.target;
+    const value = parseInt(el.dataset.value);
+    el.classList.add("selected-cell");
+    selected = [{ type: "cell", value }];
+  }
+}
+
+function operate(a, b) {
+  switch (operation) {
+    case "multiplicacao": return a * b;
+    case "adicao": return a + b;
+    case "subtracao": return a - b;
+    case "divisao": return b === 0 ? "∞" : (a / b).toFixed(2);
+  }
+}
+
+function symbol() {
+  return {
+    multiplicacao: "×",
+    adicao: "+",
+    subtracao: "−",
+    divisao: "÷"
+  }[operation];
+}
+
+function clearSelection() {
+  selected = [];
+  document.querySelectorAll(".selected-row, .selected-col, .selected-cell, .highlighted, .highlight-result")
+    .forEach(el => el.classList.remove("selected-row", "selected-col", "selected-cell", "highlighted", "highlight-result"));
+}
+
+function clearHighlights() {
+  document.querySelectorAll(".highlighted, .highlight-result")
+    .forEach(el => el.classList.remove("highlighted", "highlight-result"));
+}
+
+function addHistory(text) {
+  const li = document.createElement("li");
+  li.innerText = text;
+  document.getElementById("history").appendChild(li);
+}
+
+function clearHistory() {
+  document.getElementById("history").innerHTML = "";
+}
+
+function playSound() {
+  const audio = sounds[operation];
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play();
+  }
+}
+
+function changeOperation() {
+  operation = document.getElementById("operation").value;
+  document.body.className = operation;
+  clearSelection();
+  createTable();
+}
+
+// Tutorial
+function startTutorial() {
+  step = 0;
+  tutorialSteps = getTutorialSteps();
+  showStep();
+}
+
+function getTutorialSteps() {
+  if (operation === "multiplicacao" || operation === "adicao") {
+    return [
+      { text: "Clique em um número da LINHA para destacar", selector: "th[data-row]" },
+      { text: "Agora clique em um número da COLUNA para ver o resultado", selector: "th[data-col]" }
+    ];
+  } else {
+    return [
+      { text: "Clique em uma célula da tabuada", selector: "td[data-cell]" },
+      { text: "Agora clique em um número da extremidade para completar a operação", selector: "th[data-row], th[data-col]" }
+    ];
+  }
+}
+
+function showStep() {
+  const popup = document.getElementById("tutorial-popup");
+  const text = document.getElementById("tutorial-text");
+  if (step < tutorialSteps.length) {
+    const current = tutorialSteps[step];
+    text.innerText = current.text;
+    popup.classList.remove("hidden");
+    document.querySelectorAll(current.selector).forEach(el => el.classList.add("highlighted"));
+  } else {
+    popup.classList.add("hidden");
+    clearSelection();
+  }
+}
+
+function nextTutorialStep() {
+  const current = tutorialSteps[step];
+  document.querySelectorAll(current.selector).forEach(el => el.classList.remove("highlighted"));
+  step++;
+  showStep();
+}
+
+window.onload = () => {
+  changeOperation();
+};

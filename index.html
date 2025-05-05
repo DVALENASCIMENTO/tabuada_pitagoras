@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tabuada Interativa de Pitágoras</title>
-  <link rel="stylesheet" href="css/style.css"/>
+  <title>Tabuada Interativa</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="black-theme">
-  <!--Botão Tutorial-->
-  <div class="top-right">
-    <button onclick="startTutorial()">Tutorial</button>
-  </div>
+<body>
+  
+  <!-- Botão Tutorial no canto superior direito -->
+<div class="top-right">
+  <button onclick="startTutorial()">Tutorial</button>
+</div>
 
-  <!--Imagem acima do h1-->
-  <img class="pitagoras-img" src="img/pitágorasbgout.png" alt="Imagem Explicativa">
+<!-- Imagem explicativa -->
+<div class="image-container">
+  <img src="img/pitágorasbgout.png" alt="Imagem explicativa" class="imagem-pitagoras">
+</div>
 
-  <h1>Tabuada Interativa de Pitágoras</h1>
+<h1>Tabuada Interativa de Pitágoras</h1>
 
-  <!--Seletor de operação-->
+  <!-- Seletor de operação -->
   <div class="controls">
     <label for="operation">Operação:</label>
     <select id="operation" onchange="changeOperation()">
@@ -28,13 +31,22 @@
     </select>
   </div>
 
-  <!--Histórico-->
+  <!-- Tabuada -->
+  <div id="table-container"></div>
+
+  <!-- Botões de limpar -->
+  <div class="clear-buttons">
+    <button onclick="clearSelection()">Limpar Seleção</button>
+    <button onclick="clearHistory()">Limpar Histórico</button>
+  </div>
+
+  <!-- Histórico -->
   <div id="history-container">
     <h2>Histórico</h2>
     <ul id="history"></ul>
   </div>
 
-  <!--Tutorial Pop-up-->
+  <!-- Tutorial Pop-up -->
   <div id="tutorial-popup" class="hidden">
     <p id="tutorial-text"></p>
     <button onclick="nextTutorialStep()">Próximo</button>
@@ -42,11 +54,10 @@
 
   <!-- Rodapé -->
   <footer>
-    <p>Desenvolvido por Diego Nascimento - Tecnólogo em Análise e Desenvolvimento de Sistemas</p>
-    <p>TechVibe Solutions - Desennvolvimento Sistemas</p>
+    <p>Diego Nascimento - Desenvolvimento Sistemas</p>
     <br> 
-      <a href="https://github.com/diegovalenascimento" target="_blank">GitHub</a> | 
-      <a href="https://linkedin.com/in/diegovalenascimento" target="_blank">LinkedIn</a>
+      <a href="https://github.com/DVALENASCIMENTO" target="_blank">GitHub</a> | 
+      <a href="https://www.linkedin.com/in/diego-vale-do-nascimento-48212215b/" target="_blank">LinkedIn</a>
     
   </footer>
 

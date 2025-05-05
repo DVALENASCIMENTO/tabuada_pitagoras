@@ -5,173 +5,262 @@
   padding: 0;
 }
 
-/* Estilo do corpo */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #000000; /* Fundo preto */
-  color: #FFFFFF; /* Texto branco */
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  color: #333;
   padding: 20px;
-  min-height: 100vh;
+  transition: background-color 0.3s ease;
   position: relative;
-  padding-bottom: 100px; /* Espaço para o rodapé */
 }
 
-/* Imagem centralizada */
-.pitagoras-img {
+/* Temas por operação */
+body.multiplicacao {
+  background-color: #fff8e1;
+}
+body.adicao {
+  background-color: #e1f5fe;
+}
+body.subtracao {
+  background-color: #fce4ec;
+}
+body.divisao {
+  background-color: #ede7f6;
+}
+
+/* Imagem principal acima do título */
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.main-image {
   width: 100%;
-  max-width: 200px;
-  display: block;
-  margin: 0 auto 20px;
-  border-radius: 12px;
+  max-width: 600px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-/* Título */
+.imagem-pitagoras {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 400px; /* tamanho máximo */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
 h1 {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 2em;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-/* Controles */
 .controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-.controls label {
-  font-size: 1.1em;
+
+/* Botão Tutorial no canto superior direito */
+.top-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
 }
 
-.controls select {
-  padding: 6px 10px;
-  border-radius: 6px;
+.top-right button {
+  background-color: #00bcd4;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+.top-right button:hover {
+  background-color: #0097a7;
+}
+
+/* Container de seleção */
+.controls {
+  margin-top: 60px; /* espaço para o botão no topo */
+  margin-bottom: 20px;
+}
+
+/* Container da tabuada */
+#table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  margin: auto;
+  max-width: 600px;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+th {
+  background-color: #eee;
+}
+
+/* Estilos para seleção */
+.selected-row {
+  background-color: #81c784 !important;
+  color: white;
+}
+
+.selected-col {
+  background-color: #4fc3f7 !important;
+  color: white;
+}
+
+.selected-cell {
+  background-color: #ffb74d !important;
+  color: white;
+}
+
+/* Destaque do resultado */
+.highlighted {
+  background-color: #ba68c8 !important;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Botões de limpar */
+.clear-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Botões gerais */
+button {
+  padding: 10px 20px;
+  background-color: #3949ab;
+  color: white;
   border: none;
-  font-size: 1em;
-  background-color: #1E2830;
-  color: #ffffff;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #283593;
+}
+
+select {
+  padding: 8px;
+  font-size: 16px;
+  margin-right: 10px;
 }
 
 /* Histórico */
 #history-container {
-  margin: 30px auto;
-  max-width: 600px;
+  margin-top: 30px;
 }
 
 #history-container h2 {
-  text-align: center;
   margin-bottom: 10px;
 }
 
 #history {
   list-style: none;
   padding-left: 0;
-  background-color: #1E2830;
-  padding: 15px;
-  border-radius: 8px;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 10px;
 }
 
 #history li {
-  margin-bottom: 6px;
-  padding: 5px;
-  border-bottom: 1px solid #333;
+  padding: 5px 0;
+  border-bottom: 1px dashed #ddd;
 }
 
 /* Tutorial Pop-up */
 #tutorial-popup {
   position: fixed;
-  top: 50%;
+  bottom: 20px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #222;
-  color: #fff;
-  padding: 20px;
-  border: 2px solid #5CA9E6;
+  transform: translateX(-50%);
+  background-color: #424242;
+  color: white;
+  padding: 15px 20px;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  gap: 15px;
+  align-items: center;
   z-index: 1000;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
 }
 
-.hidden {
+#tutorial-popup.hidden {
   display: none;
 }
 
+#tutorial-text {
+  font-size: 16px;
+  flex: 1;
+}
+
 #tutorial-popup button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #5CA9E6;
-  border: none;
-  border-radius: 5px;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
+  background-color: #ff7043;
 }
 
 #tutorial-popup button:hover {
-  background-color: #7DC2F4;
+  background-color: #f4511e;
 }
 
-/* Botão no canto superior direito */
-.top-right {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.top-right button {
-  padding: 8px 16px;
-  background-color: #5CA9E6;
-  border: none;
-  border-radius: 5px;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.top-right button:hover {
-  background-color: #7DC2F4;
-}
-
-/* Rodapé */
-footer {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 15px 10px;
-  background-color: #111;
-  color: #aaa;
-  font-size: 14px;
-}
-
-footer a {
-  color: #5CA9E6;
-  text-decoration: none;
-  margin: 0 5px;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Responsividade básica */
+/* Responsividade */
 @media (max-width: 600px) {
-  h1 {
-    font-size: 1.5em;
+  table {
+    font-size: 14px;
   }
 
-  .controls {
-    flex-direction: column;
+  th, td {
+    padding: 10px;
   }
+
+  #tutorial-popup {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .clear-buttons {
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 
   .top-right {
     position: static;
     text-align: right;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 }
