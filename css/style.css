@@ -48,7 +48,7 @@ body.divisao {
   display: block;
   margin: 0 auto;
   width: 80%;
-  max-width: 200px; /* tamanho máximo */
+  max-width: 150px; /* tamanho máximo */
   height: auto;
   border-radius: 10px;
 }
