@@ -1,5 +1,3 @@
-Código JavaScript - Projeto Tabuada Interativa de Pitágoras
-
 //Variáveis Iniciais
 
 let operation = "multiplicacao"; // Define a operação inicial como multiplicação
